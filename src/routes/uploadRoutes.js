@@ -1,15 +1,13 @@
-import express from "express";
-import multer from "multer";
-import sharp from "sharp";
-import fs from "fs";
-import path from "path";
-import dotenv from "dotenv";
-
-dotenv.config();
+const express = require("express");
+const multer = require("multer");
+const sharp = require("sharp");
+const fs = require("fs");
+const path = require("path");
+require("dotenv").config();
 
 const router = express.Router();
 
-// 📌 Definir pasta onde as imagens serão armazenadas
+// 📌 Criar __dirname manualmente se necessário (caso esteja dando erro)
 const uploadFolder = path.join(__dirname, "../public/uploads");
 
 // 📌 Criar a pasta se não existir
@@ -56,4 +54,5 @@ router.post("/upload-logo", upload.single("logo"), async (req, res) => {
   }
 });
 
-export default router;
+// 📌 Corrigir exportação para CommonJS
+module.exports = router;
